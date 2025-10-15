@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>लॉगिन - शिवसेना - शेवगाव तालुका</title>
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(255, 140, 0, 0.3);
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .login-title {
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .login-subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-control:focus {
+            border-color: #ff8c00;
+            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+            outline: none;
+        }
+        
+        .btn-login {
+            background: linear-gradient(135deg, #ff8c00, #ff6b35);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.3);
+        }
+        
+        .btn-login:disabled {
+            opacity: 0.6;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            z-index: 10;
+        }
+        
+        .form-control.with-icon {
+            padding-left: 50px;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner-border {
+            color: #ff8c00;
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .success-message {
+            color: #388e3c;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .password-field {
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .footer-credit {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black;
+            font-size: 11px;
+            font-weight: 400;
+            text-align: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: 0.3px;
+            line-height: 1.4;
+        }
+        
+        .footer-credit:hover {
+            color: rgba(255, 255, 255, 1);
+        }
+        
+        .footer-credit .company-name {
+            color: #ff8c00;
+            font-weight: 600;
+            font-size: 12px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Animated Background -->
+    <div class="bg-3d"></div>
+
+    <!-- Login Page -->
+    <div class="login-page">
+        <div class="login-container">
+            <!-- Login Header -->
+            <div class="login-header">
+                <div style="display: flex; justify-content: center; padding: 0px;">
+                    <img src="banner.jpg" loading="lazy" alt="Ashutosh Dahale" class="profile-image" style="width: 100%; border-radius: 15px;">                    
+                </div>
+                <h2 class="login-title mt-3">शिवसेना - शेवगाव तालुका</h2>
+                <h5>आपली समस्या नोंदवा..!</h5>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <!-- Mobile Number Field -->
+                <div class="form-group">
+                    <div class="input-group">
+                        <i class="bi bi-telephone input-icon"></i>
+                        <input type="tel" 
+                               class="form-control with-icon" 
+                               id="mobileNumber" 
+                               name="mobileNumber"
+                               placeholder="मोबाईल नंबर टाका"
+                               maxlength="10"
+                               required>
+                    </div>
+                </div>
+
+                <!-- Password Field (Hidden by default) -->
+                <div class="form-group password-field" id="passwordField">
+                    <div class="input-group">
+                        <i class="bi bi-lock input-icon"></i>
+                        <input type="password" 
+                               class="form-control with-icon" 
+                               id="password" 
+                               name="password"
+                               placeholder="पासवर्ड टाका">
+                    </div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">तपासत आहे...</p>
+                </div>
+
+                <!-- Error Message -->
+                <div class="error-message" id="errorMessage"></div>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage"></div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <span id="btnText">पुढे जा</span>
+                </button>
+            </form>
+
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="login.js"></script>
+
+    
+    <!-- Footer Credit -->
+    <div class="footer-credit">
+        Developed by<br>
+        <span class="company-name">Flairbyte Technologies</span>
+    </div>
+</body>
+</html> 
